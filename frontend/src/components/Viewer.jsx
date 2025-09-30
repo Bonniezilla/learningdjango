@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { getProducts } from '../services/products';
+import { motion } from 'motion/react';
 
-function Viewer({ filters }) {
+function Viewer({ filters, addToCart }) {
     const [products, setProducts] = useState([]);
     const [next, setNext] = useState(null);
     const [previous, setPrevious] = useState(null);
@@ -31,27 +32,40 @@ function Viewer({ filters }) {
         fetchData("/products/");
     }, [filters]);
 
-    if (loading) return <h1 className='text-white font-bold text-9xl'>Loading</h1>;
+    if (loading) return ( 
+        <h1 className='text-white font-bold text-9xl'>Loading</h1> 
+    );
 
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col bg-antiflash rounded w-auto h-auto">
             {products.length > 0 ? (
                 products.map(product => (
-                    <div key={product.id} className="border p-4 m-2 bg-white rounded w-1/3">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3 }}
+                        key={product.id} 
+                        className="border p-4 m-2 bg-white shadow-2xl rounded flex flex-col">
                         <h2 className="text-lg font-bold">{product.name}</h2>
                         <p className="text-gray-600">{product.description}</p>
-                        <p className="text-blue-500">${product.price}</p>
-                    </div>
+                        <p className="text-steelblue">${product.price}</p>
+                        <button 
+                            onClick={() => addToCart(product)}
+                            className='p-2 bg-blaft-500 text-white rounded hover:cursor-pointer hover:bg-blaft-700 hover:text-jonquill duration-200 self-end shadow-2xl'
+                            >
+                                Add to cart
+                        </button>
+                    </motion.div>
                 ))
             ) : (
-                <p className="text-white font-bold">No products found.</p>
+                <p className="text-3xl font-bold">No products found.</p>
             )
             }
-            <div className='flex gap-2'>
-                <button className='bg-white rounded p-2 text-blue-500 hover:cursor-pointer' onClick={() => fetchData(parseUrl(previous))} disabled={!previous}>
+            <div className='flex gap-2 p-2'>
+                <button className='bg-blaft-500 rounded p-2 text-white hover:cursor-pointer disabled:opacity-50 hover:bg-blaft-700 hover:text-jonquill shadow-2xl' onClick={() => fetchData(parseUrl(previous))} disabled={!previous}>
                     Previous
                 </button>
-                <button className='bg-white rounded p-2 text-blue-500 hover:cursor-pointer' onClick={() => fetchData(parseUrl(next))} disabled={!next} >
+                <button className='bg-blaft-500 rounded p-2 text-white hover:cursor-pointer disabled:opacity-50 hover:bg-blaft-700 hover:text-jonquill shadow-2xl' onClick={() => fetchData(parseUrl(next))} disabled={!next} >
                     Next
                 </button>
             </div>

@@ -1,1 +1,19 @@
 @import "tailwindcss";
+
+@theme {
+    --color-antiflash: #F1F2F6;
+    
+    --color-blaft-100: #485899;
+    --color-blaft-200: #41508B;
+    --color-blaft-300: #3B487D;
+    --color-blaft-400: #34406F;
+    --color-blaft-500: #2C365E;
+    --color-blaft-600: #273053;
+    --color-blaft-700: #212845;
+    --color-blaft-800: #1B2037;
+    --color-blaft-900: #141829;
+
+    --color-steelblue: #3F88C5;
+    --color-africanviolet: #B47EB3;
+    --color-jonquill: #F7CB15;
+}

@@ -1,5 +1,6 @@
-import { useState } from 'react'
-import Viewer from './components/Viewer'
+import { useState } from 'react';
+import Viewer from './components/Viewer';
+import Cart from './components/Cart';
 
 function App() {
   const [filters, setFilters] = useState({
@@ -8,27 +9,56 @@ function App() {
     max_price: '',
     ordering: ''
   });
+  const [cart, setCart] = useState([]);
 
   const handleChange = (e) => {
     setFilters({ ...filters, [e.target.name]: e.target.value });
   }
 
+  const addToCart = (product) => {
+    setCart((prev) => {
+      const exists = prev.find(item => item.id === product.id);
+      if (exists) {
+        return prev.map(item =>
+          item.id === product.id ?
+            { ...item, amount: item.amount + 1 } : item
+        );
+      } else {
+        return [...prev, { ...product, amount: 1 }];
+      }
+    });
+  };
+
+  const removeFromCart = (id) => {
+    setCart(cart.filter(item => item.id !== id));
+  }
+
+  const updateAmount = (productId, newAmount) => {
+    setCart((prev) =>
+      prev.map((item) =>
+        item.id === productId ? { ...item, amount: newAmount } : item
+      ));
+  }
+
   return (
     <>
-      <main className="container mx-auto p-4 bg-slate-800 min-h-screen min-w-screen">
-        <div className='p-4 flex gap-2'>
-          <input type='text' name="search" value={filters.search} onChange={handleChange} placeholder="Product Name" className="p-2 rounded bg-white" />
-          <input type='number' name="min_price" value={filters.min_price} onChange={handleChange} placeholder="Min Price" className="p-2 rounded bg-white" />
-          <input type='number' name="max_price" value={filters.max_price} onChange={handleChange} placeholder="Max Price" className="p-2 rounded bg-white" />
-          <select name="ordering" value={filters.ordering} onChange={handleChange} className="p-2 rounded bg-white">
-            <option value="">Ordering By</option>
-            <option value="-price">Price +</option>
-            <option value="price">Price -</option>
-            <option value="-created_at">Most Recent</option>
-            <option value="created_at">Older</option>
-          </select>
+      <main className="container mx-auto p-4 bg-blaft-600 min-h-screen w-auto grid grid-cols-2 gap-2">
+        <div className='flex flex-col gap-2'>
+          <div className='flex gap-2'>
+            <input type='text' name="search" value={filters.search} onChange={handleChange} placeholder="Product Name" className="p-2 rounded bg-white" />
+            <input type='number' name="min_price" value={filters.min_price} onChange={handleChange} placeholder="Min Price" className="p-2 rounded bg-white" />
+            <input type='number' name="max_price" value={filters.max_price} onChange={handleChange} placeholder="Max Price" className="p-2 rounded bg-white" />
+            <select name="ordering" value={filters.ordering} onChange={handleChange} className="p-2 rounded bg-white">
+              <option value="">Ordering By</option>
+              <option value="-price">Price +</option>
+              <option value="price">Price -</option>
+              <option value="-created_at">Most Recent</option>
+              <option value="created_at">Older</option>
+            </select>
+          </div>
+          <Viewer filters={filters} addToCart={addToCart} />
         </div>
-        <Viewer filters={filters} />
+        <Cart cart={cart} removeFromCart={removeFromCart} updateAmount={updateAmount} />
       </main>
     </>
   )
