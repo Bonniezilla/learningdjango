@@ -24,6 +24,8 @@ function App() {
             <option value="">Ordering By</option>
             <option value="-price">Price +</option>
             <option value="price">Price -</option>
+            <option value="-created_at">Most Recent</option>
+            <option value="created_at">Older</option>
           </select>
         </div>
         <Viewer filters={filters} />
