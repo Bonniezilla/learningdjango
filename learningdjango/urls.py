@@ -27,5 +27,8 @@ router.register(r'products', ProductViewSet, basename='product')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),  # Include URLs from main_app
-    re_path(r"^.*$", TemplateView.as_view(template_name='index.html')),  # Serve the frontend
+]
+
+urlpatterns += [
+    re_path(r'^(?!api/).*$', TemplateView.as_view(template_name='index.html')),
 ]
