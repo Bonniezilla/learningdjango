@@ -15,8 +15,11 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+REACT_DIR = BASE_DIR / 'frontend' / 'dist'
 
-STATICFILES_DIRS = [BASE_DIR / 'frontend' / 'dist' / 'assets']
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [REACT_DIR / 'assets']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -73,7 +76,7 @@ TEMPLATES = [
     },
 ]
 
-TEMPLATES[0]['DIRS'] = [BASE_DIR / 'frontend' / 'dist']
+TEMPLATES[0]['DIRS'] = [REACT_DIR]
 
 WSGI_APPLICATION = 'learningdjango.wsgi.application'
 
@@ -123,7 +126,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
