@@ -28,7 +28,3 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),  # Include URLs from main_app
 ]
-
-urlpatterns += [
-    re_path(r'^(?!api/|admin/).*$', TemplateView.as_view(template_name='index.html')),
-]
