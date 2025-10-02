@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from backend.views import ProductViewSet
+from django.views.generic import TemplateView
 
 router = routers.DefaultRouter()
 router.register(r'products', ProductViewSet, basename='product')
@@ -26,4 +27,5 @@ router.register(r'products', ProductViewSet, basename='product')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),  # Include URLs from main_app
+    path('', TemplateView.as_view(template_name='index.html')),  # Serve the frontend
 ]
