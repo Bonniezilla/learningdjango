@@ -30,5 +30,5 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-    re_path(r'^(?!api/).*$', TemplateView.as_view(template_name='index.html')),
+    re_path(r'^(?!api/|admin/).*$', TemplateView.as_view(template_name='index.html')),
 ]
