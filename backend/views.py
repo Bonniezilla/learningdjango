@@ -7,6 +7,9 @@ from .filters import ProductFilter
 
 # Create your views here.
 
+def index(request):
+    return render(request, 'index.html')
+
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer 
