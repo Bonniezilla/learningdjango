@@ -73,8 +73,6 @@ TEMPLATES = [
     },
 ]
 
-TEMPLATES[0]['DIRS'] = [REACT_DIR]
-
 WSGI_APPLICATION = 'learningdjango.wsgi.application'
 
 
