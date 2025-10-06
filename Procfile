@@ -1,2 +1,2 @@
 
-web: gunicorn learningdjango.wsgi
+web: gunicorn backend.wsgi
