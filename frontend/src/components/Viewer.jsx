@@ -32,36 +32,38 @@ function Viewer({ filters, addToCart }) {
         fetchData("/products/");
     }, [filters]);
 
-    if (loading) return ( 
-        <h1 className='text-white font-bold text-9xl'>Loading</h1> 
+    if (loading) return (
+        <h1 className='text-white font-bold text-9xl'>Loading</h1>
     );
 
     return (
-        <div className="flex flex-col bg-antiflash rounded w-auto h-auto">
-            {products.length > 0 ? (
-                products.map(product => (
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3 }}
-                        key={product.id} 
-                        className="border p-4 m-2 bg-white shadow-2xl rounded flex flex-col">
-                        <h2 className="text-lg font-bold">{product.name}</h2>
-                        <p className="text-gray-600">{product.description}</p>
-                        <p className="text-steelblue">${product.price}</p>
-                        <button 
-                            onClick={() => addToCart(product)}
-                            className='p-2 bg-blaft-500 text-white rounded hover:cursor-pointer hover:bg-blaft-700 hover:text-jonquill duration-200 self-end shadow-2xl'
+        <div className="flex flex-col bg-antiflash rounded w-full flex-1 min-h-0 p-4">
+            <div className='flex flex-col w-full h-full min-h-0 overflow-y-auto gap-2'>
+                {products.length > 0 ? (
+                    products.map(product => (
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.3 }}
+                            key={product.id}
+                            className="border p-4 bg-white shadow-2xl rounded flex flex-col">
+                            <h2 className="text-lg font-bold">{product.name}</h2>
+                            <p className="text-gray-600">{product.description}</p>
+                            <p className="text-steelblue">${product.price}</p>
+                            <button
+                                onClick={() => addToCart(product)}
+                                className='p-2 bg-blaft-500 text-white rounded hover:cursor-pointer hover:bg-blaft-700 hover:text-jonquill duration-200 self-end shadow-2xl'
                             >
                                 Add to cart
-                        </button>
-                    </motion.div>
-                ))
-            ) : (
-                <p className="text-3xl font-bold">No products found.</p>
-            )
-            }
-            <div className='flex gap-2 p-2'>
+                            </button>
+                        </motion.div>
+                    ))
+                ) : (
+                    <p className="text-3xl font-bold">No products found.</p>
+                )
+                }
+            </div>
+            <div className='flex gap-2 py-2 w-full'>
                 <button className='bg-blaft-500 rounded p-2 text-white hover:cursor-pointer disabled:opacity-50 hover:bg-blaft-700 hover:text-jonquill shadow-2xl' onClick={() => fetchData(parseUrl(previous))} disabled={!previous}>
                     Previous
                 </button>

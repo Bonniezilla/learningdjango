@@ -42,13 +42,13 @@ function App() {
 
   return (
     <>
-      <main className="container mx-auto p-4 bg-blaft-600 min-h-screen w-auto grid grid-cols-2 gap-2">
-        <div className='flex flex-col gap-2'>
-          <div className='flex gap-2'>
-            <input type='text' name="search" value={filters.search} onChange={handleChange} placeholder="Product Name" className="p-2 rounded bg-white" />
-            <input type='number' name="min_price" value={filters.min_price} onChange={handleChange} placeholder="Min Price" className="p-2 rounded bg-white" />
-            <input type='number' name="max_price" value={filters.max_price} onChange={handleChange} placeholder="Max Price" className="p-2 rounded bg-white" />
-            <select name="ordering" value={filters.ordering} onChange={handleChange} className="p-2 rounded bg-white">
+      <main className="container mx-auto p-4 bg-blaft-600 h-screen w-screen grid grid-cols-2 grid-rows-1 gap-2">
+        <div className='flex flex-col gap-2 p-2 h-full w-full'>
+          <div className='flex gap-2 w-full'>
+            <input type='text' name="search" value={filters.search} onChange={handleChange} placeholder="Product Name" className="p-2 rounded bg-white w-full" />
+            <input type='number' name="min_price" value={filters.min_price} onChange={handleChange} placeholder="Min Price" className="p-2 rounded bg-white w-full" min={0}/>
+            <input type='number' name="max_price" value={filters.max_price} onChange={handleChange} placeholder="Max Price" className="p-2 rounded bg-white w-full" min={0}/>
+            <select name="ordering" value={filters.ordering} onChange={handleChange} className="p-2 rounded bg-white w-full">
               <option value="">Ordering By</option>
               <option value="-price">Price +</option>
               <option value="price">Price -</option>
