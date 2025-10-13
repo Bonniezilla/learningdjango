@@ -43,7 +43,7 @@ function App() {
   return (
     <>
       <main className="container mx-auto p-4 bg-blaft-600 h-screen w-screen grid grid-cols-2 grid-rows-1 gap-2">
-        <div className='flex flex-col gap-2 p-2 h-full w-full'>
+        <div className='flex flex-col gap-2 h-full w-full'>
           <div className='flex gap-2 w-full'>
             <input type='text' name="search" value={filters.search} onChange={handleChange} placeholder="Product Name" className="p-2 rounded bg-white w-full" />
             <input type='number' name="min_price" value={filters.min_price} onChange={handleChange} placeholder="Min Price" className="p-2 rounded bg-white w-full" min={0}/>

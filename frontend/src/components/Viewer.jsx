@@ -38,13 +38,14 @@ function Viewer({ filters, addToCart }) {
 
     return (
         <div className="flex flex-col bg-antiflash rounded w-full flex-1 min-h-0 p-4">
-            <div className='flex flex-col w-full h-full min-h-0 overflow-y-auto gap-2'>
+            <div className='flex flex-col w-full h-full p-2 min-h-0 overflow-y-auto custom-scrollbar gap-2'>
                 {products.length > 0 ? (
                     products.map(product => (
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.3 }}
+                            viewport={{ once: true}}
                             key={product.id}
                             className="border p-4 bg-white shadow-2xl rounded flex flex-col">
                             <h2 className="text-lg font-bold">{product.name}</h2>

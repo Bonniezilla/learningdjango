@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 html, body, #root {
+    @apply bg-blaft-800 text-blaft-600;
+
     height: 100%;
     margin: 0;
     font-family: Arial, sans-serif;
@@ -22,4 +24,27 @@ html, body, #root {
     --color-steelblue: #3F88C5;
     --color-africanviolet: #B47EB3;
     --color-jonquill: #F7CB15;
+}
+
+.custom-scrollbar {
+    scrollbar-color: var(--color-blaft-500) var(--color-antiflash);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: var(--color-antiflash);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: var(--color-blaft-500);
+    border-radius: 4px;
+    border: 2px solid var(--color-antiflash);
+    transition: all 0.6s ease-in;
+}
+
+.custom-scrollbar::hover:-webkit-scrollbar-thumb{
+    background-color: var(--color-blaft-700);
 }
