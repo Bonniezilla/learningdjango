@@ -68,7 +68,7 @@ function CreateProductPanel() {
             <button
                 type="submit"
                 className="p-2 w-full bg-blaft-500 text-white rounded hover:cursor-pointer hover:bg-blaft-700 hover:text-jonquill duration-200 shadow-2xl"
-                disabled={loading}
+                disabled={loading} 
                 >
                 {loading ? "Creating..." : "Create Product"}
             </button>

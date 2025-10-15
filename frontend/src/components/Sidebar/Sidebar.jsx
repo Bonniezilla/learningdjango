@@ -1,5 +1,6 @@
 import Section from "./Section";
 import CreateProductPanel from "./CreateProductPanel";
+import DeleteProductPanel from "./DeleteProductPanel";
 import { useState } from "react";
 
 function Sidebar() {
@@ -31,7 +32,9 @@ function Sidebar() {
                 title="Delete Product"
                 isOpen={open === "delete"}
                 onClick={() => toggle("delete")}
-            ></Section>
+            >
+                <DeleteProductPanel />
+            </Section>
         </aside>
     )
 }
