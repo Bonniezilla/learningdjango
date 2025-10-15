@@ -48,9 +48,9 @@ function Viewer({ filters, addToCart }) {
                             viewport={{ once: true}}
                             key={product.id}
                             className="border p-4 bg-white shadow-2xl rounded flex flex-col">
-                            <h2 className="text-lg font-bold">{product.name}</h2>
+                            <h2 className="text-3xl font-bold">{product.name}</h2>
                             <p className="text-gray-600">{product.description}</p>
-                            <p className="text-steelblue">${product.price}</p>
+                            <p className="text-steelblue text-2xl">${product.price}</p>
                             <button
                                 onClick={() => addToCart(product)}
                                 className='p-2 bg-blaft-500 text-white rounded hover:cursor-pointer hover:bg-blaft-700 hover:text-jonquill duration-200 self-end shadow-2xl'
