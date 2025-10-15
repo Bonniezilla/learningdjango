@@ -5,7 +5,7 @@ function CreateProductPanel() {
     const [form, setForm] = useState({
         name: "",
         description: "",
-        price: null,
+        price: "",
     });
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
@@ -25,7 +25,7 @@ function CreateProductPanel() {
             setForm({
                 name: "",
                 description: "",
-                price: null,
+                price: "",
             });
         } catch (error) {
             console.error("Error creating product:", error);
