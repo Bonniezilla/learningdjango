@@ -7,4 +7,9 @@ const api = axios.create({
     },
 });
 
+export const createProduct = async (product) => {
+    const response = await api.post('/products/', product);
+    return response.data;
+}
+
 export default api;

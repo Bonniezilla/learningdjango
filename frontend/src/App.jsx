@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Viewer from './components/Viewer';
 import Cart from './components/Cart';
+import Sidebar from './components/Sidebar/Sidebar';
 
 function App() {
   const [filters, setFilters] = useState({
@@ -43,7 +44,9 @@ function App() {
   return (
     <>
       <main className="container p-4 px-64 bg-blaft-600 h-screen min-w-screen grid grid-cols-[1fr] sm:p-8 md:grid-cols-[minmax(200px,300px)_repeat(2,minmax(300px,600px))] grid-rows-1 gap-2 justify-center">
-        <div className="flex text-white border-4 border-white justify-center items-center">1</div>
+        <div className="flex text-white border-4 border-white justify-center items-center">
+          <Sidebar />
+        </div>
         <div className='flex flex-col gap-2 h-full w-full'>
           <div className='flex gap-2 w-full'>
             <input type='text' name="search" value={filters.search} onChange={handleChange} placeholder="Product Name" className="p-2 rounded bg-white w-full" />
