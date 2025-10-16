@@ -1,18 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 import { getProducts } from '../services/products';
 import { motion } from 'motion/react';
+import { useContext } from 'react';
+import { ProductsContext } from '../context/ProductsContext';
 
 function Viewer({ filters, addToCart }) {
-    const [products, setProducts] = useState([]);
+    const { products, setProductsList } = useContext(ProductsContext);
     const [next, setNext] = useState(null);
     const [previous, setPrevious] = useState(null);
     const [loading, setLoading] = useState(false);
+
 
     const fetchData = async (url) => {
         try {
             setLoading(true);
             const result = await getProducts(filters, url);
-            setProducts(result.data.results || []);
+            setProductsList(result.data.results || []);
             setNext(result.data.next);
             setPrevious(result.data.previous);
         } catch (error) {
@@ -45,7 +48,7 @@ function Viewer({ filters, addToCart }) {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.3 }}
-                            viewport={{ once: true}}
+                            viewport={{ once: true }}
                             key={product.id}
                             className="border p-4 bg-white shadow-2xl rounded flex flex-col">
                             <h2 className="text-3xl font-bold">{product.name}</h2>

@@ -1,12 +1,15 @@
 import { useState } from "react";
-import { getProductByName } from "../../api";
 import { deleteProduct } from "../../api";
 import { useSearchProduct } from "../../hooks/UseSearchProduct";
+import { useContext } from "react";
+import { ProductsContext } from "../../context/ProductsContext";
 
 function DeleteProductPanel() {
     const [search, setSearch] = useState("");
     const { product, message, loading, handleSearch, setProduct, setMessage, setLoading } = useSearchProduct();
     const [confirming, setConfirming] = useState(false);
+
+    const { deleteProduct } = useContext(ProductsContext);
 
     const handleChange = (e) => {
         setSearch(e.target.value);
@@ -15,6 +18,7 @@ function DeleteProductPanel() {
     const handleDelete = async () => {
         try {
             await deleteProduct(product.id);
+            deleteProduct(product.id);
             setMessage("Product deleted successfully");
             setProduct(null);
             setConfirming(false);
