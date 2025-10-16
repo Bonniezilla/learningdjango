@@ -1,33 +1,15 @@
 import { useState } from "react";
 import { getProductByName } from "../../api";
 import { deleteProduct } from "../../api";
+import { useSearchProduct } from "../../hooks/UseSearchProduct";
 
 function DeleteProductPanel() {
     const [search, setSearch] = useState("");
-    const [message, setMessage] = useState("");
-    const [product, setProduct] = useState("");
+    const { product, message, loading, handleSearch, setProduct, setMessage, setLoading } = useSearchProduct();
     const [confirming, setConfirming] = useState(false);
 
     const handleChange = (e) => {
         setSearch(e.target.value);
-    }
-
-    const handleSearch = async () => {
-        // Implement search logic here
-        setMessage("");
-        try {
-            const data = await getProductByName(search)
-            if (data.results && data.results.length > 0) {
-                const found = data.results[0];
-                setProduct(found);
-                console.log(found);
-            } else {
-                setProduct(null);
-                setMessage("No product found");
-            }
-        } catch (error) {
-            setMessage("Error searching for product");
-        }
     }
 
     const handleDelete = async () => {
@@ -53,7 +35,7 @@ function DeleteProductPanel() {
                 />
                 <button
                     className="bg-red-500 text-white px-4 py-2 rounded hover:bg-blaft-500 transition-colors"
-                    onClick={handleSearch}
+                    onClick={() => handleSearch(search)}
                 >
                     Search
                 </button>
